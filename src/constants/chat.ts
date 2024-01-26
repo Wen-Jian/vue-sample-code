@@ -1,0 +1,6 @@
+export const CHAT_CONTEXT = 'CHAT_CONTEXT'
+
+export enum WS_EVENT_ENUM {
+    SEARCH = 'SEARCH',
+    SUBSCRIBE_RES = 'SUBSCRIBE_RES',
+}
