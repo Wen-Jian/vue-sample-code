@@ -54,3 +54,11 @@ export interface IRoomItem {
   getRoomname(): string;
   getRoomid(): number;
 }
+
+export type AuthContext = {
+  isLoading: Ref<boolean>;
+}
+
+export interface IAuthContext {
+  setIsLoading: (val: boolean) => void;
+}

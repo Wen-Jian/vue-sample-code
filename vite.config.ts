@@ -27,7 +27,7 @@ export default ({mode}: any) => {
         // For protobuf js
         /proto/, 
         // For web3 js
-        /events/, /cross-fetch/, /crc-32/, /@ethereumjs\+rlp/,
+        /events/, /cross-fetch/, /crc-32/, /@ethereumjs\+rlp/, /eventemitter3/,
         // For vuex-persist
         /deepmerge/
       ],

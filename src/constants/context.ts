@@ -1,0 +1,2 @@
+export const CHAT_CONTEXT = 'CHAT_CONTEXT'
+export const AUTH_CONTEXT = "AUTH_CONTEXT"

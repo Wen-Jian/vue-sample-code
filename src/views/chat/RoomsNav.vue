@@ -2,8 +2,8 @@
 import { ref, inject, watch, computed } from "vue";
 import AddChatIconButton from "./AddChatIconButton.vue";
 import List, { type ListItem } from "../../components/list/List.vue";
-import type { ChatContext, SubEvent, WsSearchEventData, WsAddRoomEventData } from "../../model/chat";
-import { CHAT_CONTEXT, WS_EVENT_ENUM } from "../../constants/chat";
+import type { ChatContext, WsSearchEventData, WsAddRoomEventData } from "../../model/chat";
+import { WS_EVENT_ENUM } from "../../constants/chat";
 import Label from "../../components/label/Label.vue";
 import Input from "../../components/input/Input.vue";
 import Modal from "../../components/modal/Modal.vue";
@@ -11,6 +11,7 @@ import Button from "../../components/button/Button.vue";
 
 // @ts-ignore
 import { SearchEntity, EventEnum, AddRoomEntity } from "proto";
+import { CHAT_CONTEXT } from "../../constants/context";
 
 const ctx = inject<ChatContext>(CHAT_CONTEXT) as ChatContext
 const selectedRoomId = ctx?.selectedRoomId

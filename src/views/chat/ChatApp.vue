@@ -4,18 +4,17 @@ import RoomsNav from "./RoomsNav.vue";
 import ChatBox from "./ChatBox.vue";
 import ChatMessageBox from "./ChatMessageBox.vue";
 import ChatHeader from "./ChatHeader.vue";
-import { computed, onMounted, ref, type ComputedRef } from "vue";
+import { computed, onMounted, ref, type ComputedRef, watch } from "vue";
 import { useStore } from "vuex";
 import type { IRoomItem, StoredMsgsState } from "../../model/chat";
 // @ts-ignore
 import { Request, SearchResEntity, EventEnum, Response, SubRes, MessageEntity, SendMsgRes } from "proto";
 import { provide } from 'vue'
-import { CHAT_CONTEXT } from "../../constants/chat";
 import type { ChatContext, WsEventData } from "../../model/chat";
-import { CHAT_AUTH_LOGIN_PATH } from "../../constants/path";
 import { STORE_ACTION_SET_TOKEN } from "../../store/action";
 import type { StoreState } from "../../model/store";
 import { WS_EVENT_ENUM } from "../../constants/chat";
+import { CHAT_CONTEXT } from "../../constants/context";
 
 const wsRef = ref<WebSocket | null>(null)
 const isOpen = ref<boolean>(false)
@@ -86,7 +85,6 @@ const handleReceivingMsg = (msg: any) => {
         case EventEnum.SUBSCRIBE:
             if (err) {
                 store.commit(STORE_ACTION_SET_TOKEN, "")
-                location.href = CHAT_AUTH_LOGIN_PATH
                 return
             }
             payload = temp.unpack(SubRes.deserializeBinary, "SubRes")
@@ -146,14 +144,16 @@ const handleReceivingMsg = (msg: any) => {
     }
 }
 
-onMounted(() => {
-    if (!store.state.token) {
-        window.location.href = CHAT_AUTH_LOGIN_PATH
+watch(() => store.getters.token, () => {
+    if (store.getters.token !== "") {
+        handleSubscribe()
     }
+})
 
+onMounted(() => {
     try {
         if (wsRef.value === null) {
-            const ws = new WebSocket(`${import.meta.env.VITE_WS_DOMAIN}/chat/ws?token=${store.state.token}`);
+            const ws = new WebSocket(`${import.meta.env.VITE_WS_DOMAIN}/chat/ws?token=${store.getters.token}`);
             ws.binaryType = 'arraybuffer';
             ws.onopen = () => {
                 handleSubscribe()
@@ -172,7 +172,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div v-if="store.state.token"
+    <div v-if="store.getters.token"
         class="w-full bg-gray-100 lg:max-w-[1200px] lg:grid lg:grid-cols-12 mx-auto h-screen lg:min-w-[900px]">
         <ControlPanel />
         <div class="grid grid-cols-3 lg:col-span-11">

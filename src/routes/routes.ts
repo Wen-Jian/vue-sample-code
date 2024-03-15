@@ -6,7 +6,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/chat',
     name: 'root',
-    redirect: '/chat/login',
+    redirect: '/chat/auth',
     // component: () => import('../views/login/Login.vue'),
     children: [
       {
@@ -15,10 +15,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/chat/ChatApp.vue'),
       },
       {
-        path: 'login',
-        name: 'lv2',
-        component: () => import('../views/login/Login.vue'),
-      },
+        path: 'auth',
+        name: 'authentication',
+        component: () => import('../views/auth/Auth.vue'),
+      }
     ]
   },
 ];

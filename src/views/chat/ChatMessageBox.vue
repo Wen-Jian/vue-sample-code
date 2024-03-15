@@ -22,9 +22,9 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
-import { CHAT_CONTEXT } from "../../constants/chat";
 import type { ChatContext } from "../../model/chat";
 import Avatar from "../../components/avatar/Avatar.vue";
+import { CHAT_CONTEXT } from "../../constants/context";
 
 const ctx = inject<ChatContext>(CHAT_CONTEXT)
 const selectedRoomId = ctx?.selectedRoomId

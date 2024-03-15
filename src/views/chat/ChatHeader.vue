@@ -9,9 +9,9 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
-import { CHAT_CONTEXT } from "../../constants/chat";
 import BackIcon from "../../images/svg/backIcon.vue";
 import type { ChatContext } from "../../model/chat";
+import { CHAT_CONTEXT } from "../../constants/context";
 defineProps<{ title: string }>()
 
 const ctx = inject<ChatContext>(CHAT_CONTEXT)

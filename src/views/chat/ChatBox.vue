@@ -2,10 +2,10 @@
 import { inject, onMounted, ref } from "vue";
 import InputWithButton from "../../components/inputWithButton/InputWithButton.vue";
 import type { ChatContext } from "../../model/chat";
-import { CHAT_CONTEXT } from "../../constants/chat";
 
 // @ts-ignore
 import { EventEnum, MessageEntity } from "proto";
+import { CHAT_CONTEXT } from "../../constants/context";
 
 const ctx = inject<ChatContext>(CHAT_CONTEXT)
 

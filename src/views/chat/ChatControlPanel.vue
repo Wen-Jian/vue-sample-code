@@ -49,7 +49,7 @@ const menuList = [
 const handleLogout = async () => {
     try {
         await axios.delete<{}>(API_AUTH_LOGOUT_PATH, {data: {
-            accessToken: store.state.token
+            accessToken: store.getters.token
         }})
 
         store.commit(STORE_ACTION_SET_TOKEN, "")
